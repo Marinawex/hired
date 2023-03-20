@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+
+  p {
+    margin: 0.2em;
+  }
+  .counter {
+    height: 1.5rem;
+    align-self: center;
+  }
+}

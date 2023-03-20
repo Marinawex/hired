@@ -1,0 +1,235 @@
+const companies = [
+  {
+    name: "Facebook",
+    applicationDate: "2022-10-01",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: true,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Tesla",
+    applicationDate: "2022-09-22",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: true,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Netflix",
+    applicationDate: "2022-08-05",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "IBM",
+    applicationDate: "2022-07-01",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: true,
+    },
+  },
+  {
+    name: "Twitter",
+    applicationDate: "2022-09-12",
+    status: {
+      inProcess: true,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Salesforce",
+    applicationDate: "2022-08-20",
+    status: {
+      inProcess: false,
+      applied: true,
+      followUp: false,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Intel",
+    applicationDate: "2022-06-30",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Uber",
+    applicationDate: "2022-07-18",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: true,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Airbnb",
+    applicationDate: "2022-09-01",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Snapchat",
+    applicationDate: "2022-10-05",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Dropbox",
+    applicationDate: "2022-08-18",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: true,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Zoom",
+    applicationDate: "2022-09-27",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: true,
+    },
+  },
+  {
+    name: "Square",
+    applicationDate: "2022-07-29",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "PayPal",
+    applicationDate: "2022-06-25",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Github",
+    applicationDate: "2022-09-15",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Reddit",
+    applicationDate: "2022-10-10",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "OpenAI",
+    applicationDate: "2022-07-15",
+    status: {
+      inProcess: false,
+      applied: true,
+      followUp: false,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Google",
+    applicationDate: "2022-08-02",
+    status: {
+      inProcess: true,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Apple",
+    applicationDate: "2022-06-28",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: true,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Microsoft",
+    applicationDate: "2022-09-10",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: true,
+      noReply: false,
+      allCompanies: false,
+    },
+  },
+  {
+    name: "Amazon",
+    applicationDate: "2022-07-30",
+    status: {
+      inProcess: false,
+      applied: false,
+      followUp: false,
+      noReply: false,
+      allCompanies: true,
+    },
+  },
+];
+
+export default companies;

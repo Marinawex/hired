@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { ICompaniesData } from "../types/interfaces";
 
 const useFetch = (url: string) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<ICompaniesData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 

@@ -1,10 +1,16 @@
 import Badge from "react-bootstrap/Badge";
 
-const Counter = () => {
+interface counterProps {
+  number: number;
+}
+
+const Counter: React.FC<counterProps> = (props) => {
+  const { number } = props;
+
   return (
     <div>
       <Badge bg="light" text="dark">
-        17
+        {number}
       </Badge>
     </div>
   );

@@ -1,10 +1,14 @@
 import Card from "react-bootstrap/Card";
 import "./CardWraper.scss";
-import Company from "../components/Company";
-import { companies, daysPassedSinceApplication } from "../assets/companies";
+import Company from "./company/Company";
+import { daysPassedSinceApplication } from "../assets/companies";
 import Counter from "./Counter";
-import { useState } from "react";
+import {  useState } from "react";
 import { useDrop } from "react-dnd";
+import { ICompany } from "../types/interfaces";
+import Companies from './companies'
+import { Spinner } from "react-bootstrap";
+import useFetch from "../Hooks/useFetch";
 
 interface CardProps {
   title: string;
@@ -13,37 +17,45 @@ interface CardProps {
 const CardWraper: React.FC<CardProps> = (props) => {
   const { title } = props;
 
-  const [board, setBoard] = useState([]);
+   const [companies, setCompanies] = useState<Array<ICompany> | null>([]);
+  const { data, loading, error, refetch } = useFetch("http://localhost:3333/");
+ 
+  
 
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: "company",
-    drop: (item) => addCompanyToBoard(item.id),
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-    }),
-  }));
+  if (loading) return <Spinner />;
+  if (error) console.log(error);
+  if (!data) return null;
+  // const [board, setBoard] = useState<Array<ICompany>|null>([]);
 
-  const addCompanyToBoard = (id: Number) => {
-    const newcompanies = daysPassedSinceApplication.filter(
-      (company) => id === company.id
-    );
-    setBoard((board) => [...board, newcompanies[0]]);
-  };
+  // const [{ isOver }, drop] = useDrop(() => ({
+  //   accept: "company",
+  //   drop: (item) => addCompanyToBoard(item.id),
+  //   collect: (monitor) => ({
+  //     isOver: !!monitor.isOver(),
+  //   }),
+  // }));
 
-  const companiesFilteredByStatus = daysPassedSinceApplication.map(
+  // const addCompanyToBoard = (id: Number) => {
+  //   const newcompanies = daysPassedSinceApplication.filter(
+  //     (company) => id === company.id
+  //   );
+  //   setBoard((board) => [...board, newcompanies[0]]);
+  // };
+
+  const companiesFilteredByStatus = data.data.companies && data.data.companies.map(
     (comp, index) => (
       <li key={index}>
         {comp.status[title] ? (
           <Company
             name={comp.name}
             applicationDate={comp.applicationDate}
-            daysCounter={comp.daysPassedSinceApplication}
+            // daysCounter={comp.daysPassedSinceApplication}
           />
         ) : title === "All Companies" ? (
           <Company
             name={comp.name}
             applicationDate={comp.applicationDate}
-            daysCounter={comp.daysPassedSinceApplication}
+            // daysCounter={comp.daysPassedSinceApplication}
           />
         ) : null}
       </li>
@@ -54,17 +66,20 @@ const CardWraper: React.FC<CardProps> = (props) => {
     <>
       <Card
         className="wraper"
-        ref={drop}
+        // ref={drop}
         style={{ height: "23rem", width: "23rem" }}
       >
         <Card.Body>
           <Card.Title className="title">
             {title.toUpperCase()}
-            <Counter number={companies.length} />
+            <Counter number={data.data.companies.length} />
           </Card.Title>
-          <ul>
-            {companiesFilteredByStatus}
-            {board.map((comp, index) => {
+         
+        
+         
+         <ul>{companiesFilteredByStatus}</ul>
+          
+            {/* {board && board.map((comp, index) => {
               return (
                 <Company
                   key={index}
@@ -74,8 +89,9 @@ const CardWraper: React.FC<CardProps> = (props) => {
                   id={comp.id}
                 />
               );
-            })}
-          </ul>
+            })} */}
+            
+       
         </Card.Body>
       </Card>
     </>

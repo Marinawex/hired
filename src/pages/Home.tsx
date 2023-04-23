@@ -4,9 +4,10 @@ import Search from "../components/Search";
 import useFetch from "../Hooks/useFetch";
 import { Spinner } from "react-bootstrap";
 import AddPosition from "../modals/AddPosition";
+import Company from "../components/company/Company";
 
 const Home = () => {
-  const { data, loading, error, refetch } = useFetch("http://localhost:3333/");
+  // const { data, loading, error, refetch } = useFetch("http://localhost:3333/");
 
   const titles = [
     "inProcess",
@@ -16,19 +17,19 @@ const Home = () => {
     "noReply",
     "All Companies",
   ];
-  console.log(data);
 
-  if (loading) return <Spinner />;
-  if (error) console.log(error);
-  if (!data) return null;
-  console.log(data.data.companies[0].name);
+
+  // if (loading) return <Spinner />;
+  // if (error) console.log(error);
+  // if (!data) return null;
+  // console.log(data.data.companies[0].name);
   return (
     <>
       <div className="appContainer">
         <div className="InProcess">
           <CardWraper title={"In Process"} />
-          <h3>{data.data.companies[0].name}</h3>
-          <button onClick={refetch}>refetch</button>
+          {/* <h3>{data.data.companies[0].name}</h3>
+          <button onClick={refetch}>refetch</button> */}
           <div className="d-grid gap-2">
             <AddPosition />
           </div>
@@ -36,9 +37,14 @@ const Home = () => {
         <div className="companies">
           <Search />
           <div className="container">
-            {titles.map((title, index) => (
-              <CardWraper title={title} key={index} />
-            ))}
+            
+              <CardWraper title={'inProcess'} />
+              <CardWraper title={'applied'} />
+              <CardWraper title={'followUp'} />
+              <CardWraper title={'rejected'} />
+              <CardWraper title={'noReply'} />
+              <CardWraper title={'All Companies'} />
+           
           </div>
         </div>
       </div>

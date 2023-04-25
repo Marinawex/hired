@@ -9,13 +9,17 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { fromZodError, ZodError } from "zod-validation-error";
+import  axios  from "axios";
 
 const AddPositionSchema = z
   .object({
-    CompanyName: z.string().min(1, { message: "This field is required" }).max(40),
-    Position: z.string().min(2, { message: "This field is required" }).max(40),
+    CompanyName: z
+      .string()
+      .min(1, { message: "This field is required" })
+      .max(40),
+    Position: z.string().min(1, { message: "This field is required" }).max(40),
     ApplicationDate: z.string(),
-    ContactName: z.string().min(2).max(40),
+    ContactName: z.string(),
     ContactEmail: z.string().email(),
     ContactPhoneNumber: z.string(),
   })
@@ -27,6 +31,9 @@ function AddPosition() {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+  const [isFormSubmited, setIsFormSubmited] = useState(false)
+  const [formSubmitionError, setFormSubmitionError] = useState(false)
+
 
   const {
     control,
@@ -40,18 +47,38 @@ function AddPosition() {
 
   const onSubmit = (data: AddPositionSchema) => {
     console.log(data);
+    axios.post('http://localhost:3333/', {name:data.CompanyName, applicationDate:data.ApplicationDate})
+    .then(function (response) {
+      console.log(response);
+      setIsFormSubmited(true)
+  
+     
+    })
+    .catch(function (error) {
+      console.log(error);
+      setFormSubmitionError(true)
+    });
   };
+
+  const addPosition = () => {
+    setIsFormSubmited(false)
+    
+  }
+
+
+  
   return (
     <>
-      <Button className="btn" variant="success" size="lg" onClick={handleShow}>
-        Add Position
-      </Button>
-      <Modal show={show} onHide={handleClose} size="lg">
+
+    <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Add Position</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleSubmit(onSubmit)}>
+         
+        {isFormSubmited? <><p>position was sucsesfully added</p> <Button variant="success" onClick={addPosition}>
+                Add another
+              </Button></>:<Form onSubmit={handleSubmit(onSubmit)}>
             <Row>
               <Col>
                 <Form.Group className="mb-3" controlId="CompanyName">
@@ -74,7 +101,7 @@ function AddPosition() {
                     )}
                   />
                   {errors.CompanyName?.message && (
-                    <p style={{color:'red'}}>{errors.CompanyName.message}</p>
+                    <p style={{ color: "red" }}>{errors.CompanyName.message}</p>
                   )}
                 </Form.Group>
               </Col>
@@ -96,7 +123,9 @@ function AddPosition() {
                       />
                     )}
                   />
-                  {errors.Position && <p style={{color:'red'}} >{errors.Position.message}</p>}
+                  {errors.Position && (
+                    <p style={{ color: "red" }}>{errors.Position.message}</p>
+                  )}
                 </Form.Group>
               </Col>
             </Row>
@@ -169,7 +198,9 @@ function AddPosition() {
                       )}
                     />
                     {errors.ContactEmail && (
-                      <p style={{color:'red'}}>{errors.ContactEmail.message}</p>
+                      <p style={{ color: "red" }}>
+                        {errors.ContactEmail.message}
+                      </p>
                     )}
                   </Form.Group>
                 </Col>
@@ -208,9 +239,14 @@ function AddPosition() {
                 reset
               </Button>
             </Modal.Footer>
-          </Form>
+          </Form> }
+          {formSubmitionError && <p>something went wrong, please try again later</p>}
         </Modal.Body>
       </Modal>
+      <Button className="btn" variant="success" size="lg" onClick={handleShow}>
+        Add Position
+      </Button>
+      
     </>
   );
 }

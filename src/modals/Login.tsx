@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 
 const schema = z
   .object({
@@ -40,7 +41,21 @@ const Login = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = (data: schema) => console.log(data);
+  const onSubmit = (data: schema) => {
+    console.log(data);
+    axios
+      .post("http://localhost:3333/api/v1/users/signup", {
+        email: data.email,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <>

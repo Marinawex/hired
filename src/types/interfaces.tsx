@@ -1,6 +1,13 @@
+export interface IContactInfo {
+  ContactName: string;
+  ContactEmail: string;
+  ContactPhoneNumber: string; // Todo : check how to valueAsNumber works
+}
+
 export interface ICompany {
   _id: string;
-  name: string;
+  companyName: string;
+  position: string;
   applicationDate: string;
   status: {
     inProcess: boolean;
@@ -9,14 +16,15 @@ export interface ICompany {
     noReply: boolean;
     rejected: boolean;
   };
+  contactInfo: IContactInfo;
 }
 
-export interface ICompanies{
-    companies: ICompany[]
+export interface ICompanies {
+  companies: ICompany[];
 }
 
 export interface ICompaniesData {
-    data: ICompanies
-    results: number
-    status:string
+  data: ICompanies;
+  results: number;
+  status: string;
 }

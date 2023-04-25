@@ -3,10 +3,10 @@ import "./CardWraper.scss";
 import Company from "./company/Company";
 import { daysPassedSinceApplication } from "../assets/companies";
 import Counter from "./Counter";
-import {  useState } from "react";
+import { useState } from "react";
 import { useDrop } from "react-dnd";
 import { ICompany } from "../types/interfaces";
-import Companies from './companies'
+import Companies from "./companies";
 import { Spinner } from "react-bootstrap";
 import useFetch from "../Hooks/useFetch";
 
@@ -17,10 +17,10 @@ interface CardProps {
 const CardWraper: React.FC<CardProps> = (props) => {
   const { title } = props;
 
-   const [companies, setCompanies] = useState<Array<ICompany> | null>([]);
-  const { data, loading, error, refetch } = useFetch("http://localhost:3333/");
- 
-  
+  const [companies, setCompanies] = useState<Array<ICompany> | null>([]);
+  const { data, loading, error, refetch } = useFetch(
+    "http://localhost:3333/api/v1/companies"
+  );
 
   if (loading) return <Spinner />;
   if (error) console.log(error);
@@ -42,25 +42,25 @@ const CardWraper: React.FC<CardProps> = (props) => {
   //   setBoard((board) => [...board, newcompanies[0]]);
   // };
 
-  const companiesFilteredByStatus = data.data.companies && data.data.companies.map(
-    (comp, index) => (
+  const companiesFilteredByStatus =
+    data.data.companies &&
+    data.data.companies.map((comp, index) => (
       <li key={index}>
         {comp.status[title] ? (
           <Company
-            name={comp.name}
+            name={comp.companyName}
             applicationDate={comp.applicationDate}
             // daysCounter={comp.daysPassedSinceApplication}
           />
         ) : title === "All Companies" ? (
           <Company
-            name={comp.name}
+            name={comp.companyName}
             applicationDate={comp.applicationDate}
             // daysCounter={comp.daysPassedSinceApplication}
           />
         ) : null}
       </li>
-    )
-  );
+    ));
 
   return (
     <>
@@ -74,12 +74,10 @@ const CardWraper: React.FC<CardProps> = (props) => {
             {title.toUpperCase()}
             <Counter number={data.data.companies.length} />
           </Card.Title>
-         
-        
-         
-         <ul>{companiesFilteredByStatus}</ul>
-          
-            {/* {board && board.map((comp, index) => {
+
+          <ul>{companiesFilteredByStatus}</ul>
+
+          {/* {board && board.map((comp, index) => {
               return (
                 <Company
                   key={index}
@@ -90,8 +88,6 @@ const CardWraper: React.FC<CardProps> = (props) => {
                 />
               );
             })} */}
-            
-       
         </Card.Body>
       </Card>
     </>

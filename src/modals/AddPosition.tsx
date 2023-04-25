@@ -62,6 +62,7 @@ function AddPosition() {
 
   const addPosition = () => {
     setIsFormSubmited(false)
+    reset()
     
   }
 

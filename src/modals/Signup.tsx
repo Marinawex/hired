@@ -26,7 +26,7 @@ const schema = z
 
 type schema = z.infer<typeof schema>;
 
-const Login = () => {
+const signup = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -60,11 +60,11 @@ const Login = () => {
   return (
     <>
       <Button variant="outline-secondary" onClick={handleShow}>
-        log in
+        signup
       </Button>
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
+          <Modal.Title>Signup</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit(onSubmit)}>
@@ -151,4 +151,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default signup;

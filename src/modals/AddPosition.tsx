@@ -45,14 +45,14 @@ function AddPosition() {
   const onSubmit = (data: AddPositionSchema) => {
     console.log(data);
     axios
-      .post("http://localhost:3333/api/v1/companies", {
-        companyName: data.CompanyName,
-        position: data.Position,
+      .post("http://localhost:3333/api/v1/positions", {
+        company: { name: data.CompanyName },
+        title: data.Position,
         applicationDate: data.ApplicationDate,
-        contactInfo: {
-          ContactName: data.ContactName,
-          ContactEmail: data.ContactEmail,
-          ContactPhoneNumber: data.ContactPhoneNumber,
+        contact: {
+          name: data.ContactName,
+          email: data.ContactEmail,
+          phoneNumber: data.ContactPhoneNumber,
         },
       })
       .then(function (response) {

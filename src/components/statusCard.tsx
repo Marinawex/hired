@@ -18,9 +18,14 @@ const StatusCard: React.FC<StatusCardProps> = (props) => {
 
   const positionsList = data?.data.positions.map((position, index) => {
     return (
-      <li>
+      <li onClick={() => console.log("clickkkkk")} key={index}>
         {" "}
-        <Position key={index} name={position.company.name} daysCounter={7} applicationDate={position.applicationDate} />
+        <Position
+          key={index}
+          name={position.company.name}
+          daysCounter={7}
+          applicationDate={position.applicationDate}
+        />
       </li>
     );
   });

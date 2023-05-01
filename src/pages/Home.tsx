@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Position } from "../types/interfaces";
 import AllPositions from "../components/AllPositions/AllPositions";
 import StatusCard from "../components/statusCard";
+import PositionInfo from "../modals/PositionInfo";
 
 const Home = () => {
   const [positions, setPositions] = useState<Array<Position> | null>([]);
@@ -32,6 +33,7 @@ const Home = () => {
           <AllPositions />
           <div className="d-grid gap-2">
             <AddPosition />
+            <PositionInfo/>
           </div>
         </div>
         <div className="positions">

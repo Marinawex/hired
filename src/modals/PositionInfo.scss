@@ -1,0 +1,39 @@
+.positionInfoTitle{
+    align-content: center;
+}
+
+.infocontainer {
+  display: flex;
+
+  div{
+      padding: 0.5rem;
+  }
+
+  .companyInfo {
+      display: flex;
+      flex-direction: column;
+      padding: 0.6rem;
+      border-right: 1px solid rgba(179, 177, 177, 0.558);
+
+      .company{
+        border-radius: 8px;
+        background-color: rgba(179, 177, 177, 0.119) ;
+
+      }
+
+      .position {
+          border-radius: 8px;
+          background-color: rgba(179, 177, 177, 0.119) ;
+      }
+       .tips{
+        background-color: rgba(179, 177, 177, 0.243) ;
+
+       }
+  }
+
+
+  .contactInfo {
+    padding: 1rem;
+}
+
+}

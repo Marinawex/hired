@@ -16,7 +16,7 @@ const AllPositions = () => {
     return (
       <li>
         {" "}
-        <Position key={index} name={position.company.name} daysCounter={5} />
+        <Position key={index} name={position.company.name} daysCounter={5} applicationDate={position.applicationDate}/>
       </li>
     );
   });

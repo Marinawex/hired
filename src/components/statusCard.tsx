@@ -20,7 +20,7 @@ const StatusCard: React.FC<StatusCardProps> = (props) => {
     return (
       <li>
         {" "}
-        <Position key={index} name={position.company.name} daysCounter={7} />
+        <Position key={index} name={position.company.name} daysCounter={7} applicationDate={position.applicationDate} />
       </li>
     );
   });

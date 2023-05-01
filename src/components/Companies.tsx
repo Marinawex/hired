@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useFetch from "../Hooks/useFetch";
 import { ICompany } from "../types/interfaces";
-import Company from "./company/Company";
+import Company from "./Position/Position";
 import { Spinner } from "react-bootstrap";
 import {  daysPassedSinceApplication } from "../assets/companies";
 interface CompaniesProps {

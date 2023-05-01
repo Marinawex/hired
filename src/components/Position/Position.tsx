@@ -1,17 +1,15 @@
 import Badge from "react-bootstrap/Badge";
 import { useDrag } from "react-dnd";
-import "./Company.scss";
+import "./Position.scss";
 
-interface CompanyProps {
-  id?: number;
+interface PositionProps {
   name: string;
   daysCounter: number;
-  applicationDate: string;
 }
 
-const Company: React.FC<CompanyProps> = (props) => {
-  const { name, daysCounter, id } = props;
-  const statusColor = 
+const Position: React.FC<PositionProps> = (props) => {
+  const { name, daysCounter } = props;
+  const statusColor =
     daysCounter > 20 ? "danger" : daysCounter > 5 ? "warning" : "success";
 
   return (
@@ -24,4 +22,4 @@ const Company: React.FC<CompanyProps> = (props) => {
   );
 };
 
-export default Company;
+export default Position;

@@ -1,20 +1,23 @@
 import Card from "react-bootstrap/Card";
 import "./CardWraper.scss";
-import Company from "./company/Company";
-import Counter from "./Counter";
+import Company from "./Position/Position";
+import Counter from "./PositionsAmount";
 import { useState } from "react";
 import { useDrop } from "react-dnd";
 import { ICompany } from "../types/interfaces";
 import { Spinner } from "react-bootstrap";
 import useFetch from "../Hooks/useFetch";
 import  Companies from "./Companies";
+import Position from "./Position/Position";
 
 interface CardProps {
   title: string;
+  positions?: [];
 }
 
 const CardWraper: React.FC<CardProps> = (props) => {
   const { title } = props;
+
   
 
   // const [companies, setCompanies] = useState<Array<ICompany> | null>([]);
@@ -26,7 +29,7 @@ const CardWraper: React.FC<CardProps> = (props) => {
   // if (error) console.log(error);
   // if (!data) return null;
 
-  console.log(title);
+  // console.log(title);
   
   // const [board, setBoard] = useState<Array<ICompany>|null>([]);
 
@@ -82,7 +85,7 @@ const CardWraper: React.FC<CardProps> = (props) => {
   return (
     <>
       <Card
-        className="wraper"
+        className="wrapper"
         // ref={drop}
         style={{ height: "23rem", width: "23rem" }}
       >

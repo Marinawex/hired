@@ -4,7 +4,7 @@ interface counterProps {
   number: number;
 }
 
-const Counter: React.FC<counterProps> = (props) => {
+const PositionsAmount: React.FC<counterProps> = (props) => {
   const { number } = props;
 
   return (
@@ -16,4 +16,4 @@ const Counter: React.FC<counterProps> = (props) => {
   );
 };
 
-export default Counter;
+export default PositionsAmount;

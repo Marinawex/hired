@@ -7,6 +7,7 @@ import AddPosition from "../modals/AddPosition";
 import { useState } from "react";
 import { Position } from "../types/interfaces";
 import AllPositions from "../components/AllPositions/AllPositions";
+import StatusCard from "../components/statusCard";
 
 const Home = () => {
   const [positions, setPositions] = useState<Array<Position> | null>([]);
@@ -18,25 +19,17 @@ const Home = () => {
   if (error) console.log(error);
   if (!data) return null;
 
-
-  const titles = [
-    "inProcess",
-    "applied",
-    "followUp",
-    "rejected",
-    "noReply",
-    "All Companies",
-  ];
+  const titles = ["inProcess", "applied", "followUp", "rejected", "noReply"];
 
   if (loading) return <Spinner />;
   if (error) console.log(error);
   if (!data) return null;
- 
+
   return (
     <>
       <div className="appContainer">
         <div className="inProcess">
-          <AllPositions/>
+          <AllPositions />
           <div className="d-grid gap-2">
             <AddPosition />
           </div>
@@ -44,12 +37,9 @@ const Home = () => {
         <div className="positions">
           <Search />
           <div className="container">
-            <CardWraper title={"inProcess"} />
-            <CardWraper title={"applied"} />
-            <CardWraper title={"followUp"} />
-            <CardWraper title={"rejected"} />
-            <CardWraper title={"noReply"} />
-            <CardWraper title={"All Companies"} />
+            {titles.map((title, index) => {
+              return <StatusCard title={title} key={index} />;
+            })}
           </div>
         </div>
       </div>

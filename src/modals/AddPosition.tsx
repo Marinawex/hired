@@ -8,6 +8,7 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import './AddPosition.scss'
 
 const AddPositionSchema = z
   .object({
@@ -86,8 +87,10 @@ function AddPosition() {
             </>
           ) : (
             <Form onSubmit={handleSubmit(onSubmit)}>
+              <div className="positionInfo">
               <Row>
                 <Col>
+                
                   <Form.Group className="mb-3" controlId="CompanyName">
                     <Form.Label>Company</Form.Label>
                     <Controller
@@ -157,14 +160,12 @@ function AddPosition() {
                 {errors.ApplicationDate && (
                   <p>{errors.ApplicationDate.message}</p>
                 )}
+              
               </Form.Group>
+              </div>
               <h3>Contact Info</h3>
-              <div
-                style={{
-                  border: "solid 1px rgba(128, 128, 128, 0.4)",
-                  padding: "1em",
-                  borderRadius: "8px",
-                }}
+              <div className="ContactInfo"
+               
               >
                 <Row>
                   <Col>

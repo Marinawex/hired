@@ -3,10 +3,12 @@
   padding: 1rem;
   left: 50%;
   transform: translate(-50%, -50%);
+ 
 }
 
 .infocontainer {
   display: flex;
+  background-color: transparent;
 
   div {
     padding: 0.5rem;

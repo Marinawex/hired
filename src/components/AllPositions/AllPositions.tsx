@@ -14,9 +14,16 @@ const AllPositions = () => {
 
   const allPositionsList = data?.data.positions.map((position, index) => {
     return (
-      <li key={index} onClick={()=> console.log('clickkkkk')}>
+      <li key={index} >
         {" "}
-        <Position key={index} name={position.company.name} daysCounter={5} applicationDate={position.applicationDate}/>
+        <Position key={index} name={position.company.name} daysCounter={5} applicationDate={position.applicationDate}  description={position.company.description}
+          location={position.company.location}
+          website={position.company.website}
+          title={position.title}
+          requirements={position.requirements}
+          contactName={position.contact?.name}
+          contactEmail={position.contact?.email}
+          contactPhoneNumber={position.contact?.phoneNumber}/>
       </li>
     );
   });

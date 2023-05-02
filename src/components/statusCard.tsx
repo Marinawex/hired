@@ -18,13 +18,21 @@ const StatusCard: React.FC<StatusCardProps> = (props) => {
 
   const positionsList = data?.data.positions.map((position, index) => {
     return (
-      <li onClick={() => console.log("clickkkkk")} key={index}>
+      <li key={index}>
         {" "}
         <Position
           key={index}
           name={position.company.name}
           daysCounter={7}
           applicationDate={position.applicationDate}
+          description={position.company.description}
+          location={position.company.location}
+          website={position.company.website}
+          title={position.title}
+          requirements={position.requirements}
+          contactName={position.contact?.name}
+          contactEmail={position.contact?.email}
+          contactPhoneNumber={position.contact?.phoneNumber}
         />
       </li>
     );
@@ -35,8 +43,8 @@ const StatusCard: React.FC<StatusCardProps> = (props) => {
       <Card className="wrapper" style={{ height: "23rem", width: "23rem" }}>
         <Card.Body>
           <Card.Title className="title">
-            {title.toUpperCase()}
-            <PositionsAmount number={data.results} />
+          <h4 style={{fontSize:'0.9rem', marginRight:'2rem', marginLeft:'1.2rem'}}>days<br/> since </h4> {title.toUpperCase()}     
+           <PositionsAmount number={data.results} /> 
           </Card.Title>
           <ul>{positionsList}</ul>
         </Card.Body>

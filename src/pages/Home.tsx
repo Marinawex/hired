@@ -33,7 +33,7 @@ const Home = () => {
           <AllPositions />
           <div className="d-grid gap-2">
             <AddPosition />
-            <PositionInfo/>
+            {/* <PositionInfo/> */}
           </div>
         </div>
         <div className="positions">

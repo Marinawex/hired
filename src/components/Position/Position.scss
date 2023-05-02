@@ -2,11 +2,15 @@
   display: flex;
   border-radius: 8px;
 
+
   p {
     margin: 0.2em;
+  
+   
   }
   .counter {
     height: 1.5rem;
-    align-self: center;
+    width: 4rem;
+    margin:0px;
   }
 }

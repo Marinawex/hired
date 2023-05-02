@@ -1,39 +1,93 @@
-.positionInfoTitle{
-    align-content: center;
+.positionInfoTitle {
+  position: absolute;
+  padding: 1rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .infocontainer {
   display: flex;
 
-  div{
-      padding: 0.5rem;
+  div {
+    padding: 0.5rem;
   }
 
   .companyInfo {
-      display: flex;
-      flex-direction: column;
-      padding: 0.6rem;
-      border-right: 1px solid rgba(179, 177, 177, 0.558);
+    display: flex;
+    flex-direction: column;
+    margin: 0.6rem;
+    padding: 0.6rem;
+    border-radius: 8px;
+    background-color: rgba(179, 177, 177, 0.119);
 
-      .company{
-        border-radius: 8px;
-        background-color: rgba(179, 177, 177, 0.119) ;
+    .company {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(179, 177, 177, 0.558);
 
+      .styleinfo {
+        display: flex;
+        flex-direction: row-reverse;
+
+        justify-content: space-between;
+        // border: 1px solid red;
+
+        .location {
+          border-radius: 5px;
+          padding: 0.5rem;
+          color: black;
+          // background-color: rgba(198, 203, 201, 0.503);
+
+          // &:hover {
+          //   background-color: rgba(198, 203, 201, 0.667);
+          // }
+        }
       }
 
-      .position {
-          border-radius: 8px;
-          background-color: rgba(179, 177, 177, 0.119) ;
-      }
-       .tips{
-        background-color: rgba(179, 177, 177, 0.243) ;
+      a {
+        text-decoration-line: none;
+        color: black;
+        border-radius: 5px;
+        padding: 0.4rem;
+        background-color: rgba(198, 203, 201, 0.503);
 
-       }
+        &:hover {
+          background-color: rgba(198, 203, 201, 0.667);
+        }
+      }
+    }
+
+    .position {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(179, 177, 177, 0.558);
+
+      .salary {
+        color: black;
+        border-radius: 5px;
+        padding: 0.4rem;
+        background-color: rgba(198, 203, 201, 0.503);
+      }
+    }
+    //    .tips{
+
+    //    }
   }
 
-
   .contactInfo {
+    border-left: 1px solid rgba(179, 177, 177, 0.558);
     padding: 1rem;
-}
 
+    a {
+      text-decoration-line: none;
+      color: inherit;
+      
+
+      &:hover {
+        color: black;
+      }
+    }
+
+    span {
+      margin-left: 1rem;
+    }
+  }
 }

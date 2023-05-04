@@ -1,0 +1,36 @@
+input{
+  border: transparent;
+
+  &:focus{
+    border: 1px solid gray;
+  }
+ 
+}
+
+.saveBtn {
+  border: transparent;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 5px;
+  padding: 0.4rem;
+  margin: 0.2rem;
+
+  &:hover{
+   background-color: rgb(89, 134, 216);
+  }
+  &::after{
+    border: transparent;
+  }
+}
+
+.cancelBtn{
+    border: transparent;
+    color: black;
+    background-color: transparent;
+
+    &:hover{
+        color: rgba(0, 0, 0, 0.455);
+        background-color: transparent;
+
+    }
+}

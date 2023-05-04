@@ -1,21 +1,23 @@
 import { svg } from "./Svg";
+import "./ContactEdit.scss";
 
 interface ContactEditProps {
   contactName: string | undefined;
   contactEmail: string | undefined;
   contactPhoneNumber: string | undefined;
+  onCancelEdit: () => void;
 }
 
 const ContactEdit: React.FC<ContactEditProps> = (props) => {
-  const { contactName, contactEmail, contactPhoneNumber } = props;
+  const { contactName, contactEmail, contactPhoneNumber, onCancelEdit } = props;
   return (
     <>
-      <h4>Contact</h4>
+      <h4>Contact </h4>
       <p>
         {" "}
         {svg.contact}
         <span>
-          <input type="text" value={contactName} />
+          <input type="text" value={contactName} autoFocus />
         </span>
       </p>
       <p>
@@ -30,11 +32,11 @@ const ContactEdit: React.FC<ContactEditProps> = (props) => {
           <input type="text" value={contactPhoneNumber} />
         </span>
       </p>
-
-      <button style={{ border: "none", backgroundColor: "transparent" }}>
-        {" "}
-        save changes{" "}
+      <br/>
+      <button className="cancelBtn" onClick={onCancelEdit}>
+        cancel
       </button>
+      <button className="saveBtn"> save changes </button>
     </>
   );
 };

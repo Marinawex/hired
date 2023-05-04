@@ -32,7 +32,11 @@ const PositionInfo: React.FC<PositionInfoProps> = (props) => {
     contactEmail,
     contactPhoneNumber,
   } = props;
-  const noContact = !contactName || !contactEmail || !contactPhoneNumber;
+  const [isEdit, setIsEdit] = useState(false);
+  const handleStartEditing = () => setIsEdit(true);
+  const handleCancelEditing = () => setIsEdit(false);
+
+  const noContact = !contactName || !contactEmail || !contactPhoneNumber
 
   return (
     <>
@@ -85,13 +89,24 @@ const PositionInfo: React.FC<PositionInfoProps> = (props) => {
           </div>
           <div className="contactInfo">
             {contactName ? (
+              !isEdit && (
+                <ContactDisplay
+                  contactName={contactName}
+                  contactEmail={contactEmail}
+                  contactPhoneNumber={contactPhoneNumber}
+                  onEdit={handleStartEditing}
+                />
+              )
+            ) : (
+              <p style={{ margin: "0 auto" }}>no contact info</p>
+            )}
+            {isEdit && (
               <ContactEdit
                 contactName={contactName}
                 contactEmail={contactEmail}
                 contactPhoneNumber={contactPhoneNumber}
+                onCancelEdit={handleCancelEditing}
               />
-            ) : (
-              <p style={{ margin: "0 auto" }}>no contact info</p>
             )}
           </div>
         </div>
@@ -100,7 +115,7 @@ const PositionInfo: React.FC<PositionInfoProps> = (props) => {
           {" "}
           <Button variant="outline-secondary">Add notes</Button>{" "}
           {noContact && (
-            <Button variant="outline-secondary">Add contact</Button>
+            <Button variant="outline-secondary" onClick={handleStartEditing}>Add contact</Button>
           )}
         </Modal.Footer>
       </Modal.Body>

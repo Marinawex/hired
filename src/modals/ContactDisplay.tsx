@@ -4,16 +4,17 @@ interface ContactDisplayProps {
   contactName: string | undefined;
   contactEmail: string | undefined;
   contactPhoneNumber: string | undefined;
+  onEdit: ()=> void
 }
 
 const ContactDisplay: React.FC<ContactDisplayProps> = (props) => {
-  const { contactName, contactEmail, contactPhoneNumber } = props;
+  const { contactName, contactEmail, contactPhoneNumber , onEdit} = props;
   return (
     <>
       <h4>
         Contact{" "}
-        <button style={{ border: "none", backgroundColor: "transparent" }}>
-          {" "}
+        <button style={{ border: "none", backgroundColor: "transparent" }} onClick={onEdit}>
+        
           {svg.edit}
         </button>
       </h4>

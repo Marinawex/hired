@@ -3,6 +3,7 @@ import { useDrag } from "react-dnd";
 import PositionInfo from "../../modals/PositionInfo";
 import "./Position.scss";
 import DaysCounter from "../DaysCounter";
+import { Modal, Button } from "react-bootstrap";
 
 interface PositionProps {
   name: string;
@@ -22,6 +23,7 @@ const Position: React.FC<PositionProps> = (props) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+
   const {
     name,
     daysCounter,
@@ -38,25 +40,29 @@ const Position: React.FC<PositionProps> = (props) => {
 
   return (
     <div className="container" onClick={handleShow}>
-     
       <DaysCounter applicationDate={applicationDate} daysCounter={6} />
       <p>{name}</p>
       {show && (
-        <PositionInfo
-          show={show}
-          setShow={setShow}
-          handleClose={handleClose}
-          companyName={name}
-          applicationDate={applicationDate}
-          description={description}
-          location={location}
-          website={website}
-          title={title}
-          requirements={requirements}
-          contactName={contactName}
-          contactEmail={contactEmail}
-          contactPhoneNumber={contactPhoneNumber}
-        />
+        <Modal show={show} onHide={handleClose} size="lg">
+          <Modal.Header closeButton>
+            <Modal.Title>{name}</Modal.Title>
+          </Modal.Header>
+          <PositionInfo
+            show={show}
+            setShow={setShow}
+            handleClose={handleClose}
+            companyName={name}
+            applicationDate={applicationDate}
+            description={description}
+            location={location}
+            website={website}
+            title={title}
+            requirements={requirements}
+            contactName={contactName}
+            contactEmail={contactEmail}
+            contactPhoneNumber={contactPhoneNumber}
+          />
+        </Modal>
       )}
     </div>
   );

@@ -1,20 +1,23 @@
-import { svg } from "./Svg";
+import { svg } from "../assets/Svg";
+import './ContactDisplay.scss'
 
 interface ContactDisplayProps {
   contactName: string | undefined;
   contactEmail: string | undefined;
   contactPhoneNumber: string | undefined;
-  onEdit: ()=> void
+  onEdit: () => void;
 }
 
 const ContactDisplay: React.FC<ContactDisplayProps> = (props) => {
-  const { contactName, contactEmail, contactPhoneNumber , onEdit} = props;
+  const { contactName, contactEmail, contactPhoneNumber, onEdit } = props;
   return (
     <>
       <h4>
         Contact{" "}
-        <button style={{ border: "none", backgroundColor: "transparent" }} onClick={onEdit}>
-        
+        <button className="editBtn"
+          style={{ border: "none", backgroundColor: "transparent" }}
+          onClick={onEdit}
+        >
           {svg.edit}
         </button>
       </h4>

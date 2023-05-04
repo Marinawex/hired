@@ -75,6 +75,8 @@
   }
 
   .contactInfo {
+    display: flex;
+    flex-direction: column;
     border-left: 1px solid rgba(179, 177, 177, 0.558);
     padding: 1rem;
 

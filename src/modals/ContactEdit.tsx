@@ -1,4 +1,4 @@
-import { svg } from "./Svg";
+import { svg } from "../assets/Svg";
 import "./ContactEdit.scss";
 
 interface ContactEditProps {
@@ -32,7 +32,7 @@ const ContactEdit: React.FC<ContactEditProps> = (props) => {
           <input type="text" value={contactPhoneNumber} />
         </span>
       </p>
-      <br/>
+      <br />
       <button className="cancelBtn" onClick={onCancelEdit}>
         cancel
       </button>

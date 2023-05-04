@@ -4,7 +4,9 @@ import "./PositionInfo.scss";
 import useFetch from "../Hooks/useFetch";
 import ContactDisplay from "./ContactDisplay";
 import ContactEdit from "./ContactEdit";
-import { svg } from "./Svg";
+import { svg } from "../assets/Svg";
+import PositionDisplay from "./PositionDisplay";
+import Notes from "./Notes";
 
 interface PositionInfoProps {
   companyName: string;
@@ -36,7 +38,11 @@ const PositionInfo: React.FC<PositionInfoProps> = (props) => {
   const handleStartEditing = () => setIsEdit(true);
   const handleCancelEditing = () => setIsEdit(false);
 
-  const noContact = !contactName || !contactEmail || !contactPhoneNumber
+  const [notes, setNotes] = useState(false);
+  const handleOpenNotes = () => setNotes(true);
+  const handleCloseNotes = () => setNotes(false);
+
+  const noContact = !contactName || !contactEmail || !contactPhoneNumber;
 
   return (
     <>
@@ -47,6 +53,7 @@ const PositionInfo: React.FC<PositionInfoProps> = (props) => {
               <h4>
                 More about {companyName}{" "}
                 <button
+                  className="editBtn"
                   style={{ border: "none", backgroundColor: "transparent" }}
                 >
                   {" "}
@@ -66,17 +73,11 @@ const PositionInfo: React.FC<PositionInfoProps> = (props) => {
               </div>
             </div>
             <div className="position">
-              <h4>
-                You applied as <span>{title}</span>
-                <button
-                  style={{ border: "none", backgroundColor: "transparent" }}
-                >
-                  {" "}
-                  {svg.edit}
-                </button>
-              </h4>
-              <p>{requirements}</p>
-              <p className="salary"> Expected salary: 10,000$</p>
+              <PositionDisplay
+                title={title}
+                requirements={requirements}
+                onEdit={handleStartEditing}
+              />
             </div>
             <div className="tips">
               <h4>Tips</h4>
@@ -108,14 +109,19 @@ const PositionInfo: React.FC<PositionInfoProps> = (props) => {
                 onCancelEdit={handleCancelEditing}
               />
             )}
+            <div className="notes">{notes && <Notes onCloseNotes={handleCloseNotes}/>}</div>
           </div>
         </div>
 
         <Modal.Footer>
           {" "}
-          <Button variant="outline-secondary">Add notes</Button>{" "}
+          <Button variant="outline-secondary" onClick={handleOpenNotes}>
+            Add notes
+          </Button>{" "}
           {noContact && (
-            <Button variant="outline-secondary" onClick={handleStartEditing}>Add contact</Button>
+            <Button variant="outline-secondary" onClick={handleStartEditing}>
+              Add contact
+            </Button>
           )}
         </Modal.Footer>
       </Modal.Body>

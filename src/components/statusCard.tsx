@@ -11,10 +11,21 @@ interface StatusCardProps {
 const StatusCard: React.FC<StatusCardProps> = (props) => {
   const { title } = props;
   const URL = `http://localhost:3333/api/v1/positions/${title}`;
-  const { data, loading, error } = useFetch(URL);
+  const { data, setData, loading, error } = useFetch(URL);
   if (loading) return <Spinner />;
   if (error) console.log(error);
   if (!data) return null;
+
+  //sorts the positions in ascending order
+  const sortedByDatePositionsList = data?.data.positions.sort(
+    (a, b) => Date.parse(b.applicationDate) - Date.parse(a.applicationDate)
+  );
+
+  const sortByDescendingOrder = () => {
+    const a = data?.data.positions.sort(
+      (a, b) => Date.parse(a.applicationDate) - Date.parse(b.applicationDate)
+    );
+  };
 
   const positionsList = data?.data.positions.map((position, index) => {
     return (
@@ -43,8 +54,19 @@ const StatusCard: React.FC<StatusCardProps> = (props) => {
       <Card className="wrapper" style={{ height: "23rem", width: "23rem" }}>
         <Card.Body>
           <Card.Title className="title">
-          <h4 style={{fontSize:'0.9rem', marginRight:'2rem', marginLeft:'1.2rem'}}>days<br/> since </h4> {title.toUpperCase()}     
-           <PositionsAmount number={data.results} /> 
+            <h4
+              style={{
+                fontSize: "0.9rem",
+                marginRight: "2rem",
+                marginLeft: "1.2rem",
+              }}
+              onClick={sortByDescendingOrder}
+            >
+              days
+              <br /> since{" "}
+            </h4>{" "}
+            {title.toUpperCase()}
+            <PositionsAmount number={data.results} />
           </Card.Title>
           <ul>{positionsList}</ul>
         </Card.Body>

@@ -1,6 +1,7 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useMemo, useRef, useState } from "react";
+import AllPositionsPage from "../pages/AllPositionsPage";
 
 
 const Search = () => {
@@ -32,6 +33,8 @@ const Search = () => {
         />
         <Button variant="outline-success">Search</Button>
       </Form>
+
+      
     
       {/* <h3>Items:</h3>
       {filteredItems.map(item => (

@@ -12,6 +12,10 @@ const AllPositions = () => {
   if (error) console.log(error);
   if (!data) return null;
 
+  const sortedByDatePositionsList = data?.data.positions.sort(
+    (a, b) => Date.parse(b.applicationDate) - Date.parse(a.applicationDate)
+  );
+
   const allPositionsList = data?.data.positions.map((position, index) => {
     return (
       <li key={index} >

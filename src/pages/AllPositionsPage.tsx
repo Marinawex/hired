@@ -5,16 +5,27 @@ import PositionsAmount from "../components/PositionsAmount";
 import Position from "../components/Position/Position";
 
 
-const AllPositionsPage = () => {
+interface AllPositionsPageProps {
+    query:string;
+}
+
+const AllPositionsPage: React.FC<AllPositionsPageProps> = (props) => {
+    const {query} = props
     const { data, loading, error, refetch } = useFetch(
         "http://localhost:3333/api/v1/positions"
       );
       if (loading) return <Spinner />;
       if (error) console.log(error);
       if (!data) return null;
+
+
+ 
     
       const allPositionsList = data?.data.positions.map((position, index) => {
+          
+          
         return (
+           
           <li key={index} >
             {" "}
             <Position key={index} name={position.company.name} daysCounter={5} applicationDate={position.applicationDate}  description={position.company.description}

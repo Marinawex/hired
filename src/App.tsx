@@ -10,13 +10,15 @@ import Search from "./components/Search";
 
 function App() {
   return (
-    <DndProvider backend={HTML5Backend}>
+    // <DndProvider backend={HTML5Backend}>
+    <>
       <Header />
-      {/* <Search/>
-      <AllPositionsPage/> */}
+      {/* <Search/> */}
+      {/* <AllPositionsPage/> */}
       <Home/>
-      <Footer />
-    </DndProvider>
+      {/* <Footer /> */}
+      </>
+    // </DndProvider>
   );
 }
 

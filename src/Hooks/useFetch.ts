@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {  positionsData } from "../types/interfaces";
+import { positionsData } from "../types/interfaces";
 
 const useFetch = (url: string) => {
   const [data, setData] = useState<positionsData | null>(null);
@@ -37,7 +37,7 @@ const useFetch = (url: string) => {
       });
   };
 
-  return { data, setData ,loading, error, refetch };
+  return { data, setData, loading, error, refetch };
 };
 
 export default useFetch;

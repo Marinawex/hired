@@ -7,7 +7,6 @@ import { Modal, Button } from "react-bootstrap";
 
 interface PositionProps {
   name: string;
-  daysCounter: number;
   applicationDate: string;
   description: string | undefined;
   location: string | undefined;
@@ -25,8 +24,7 @@ const Position: React.FC<PositionProps> = (props) => {
   const handleClose = () => setShow(false);
 
   const {
-    name,
-    daysCounter,
+    name, 
     applicationDate,
     description,
     location,
@@ -40,7 +38,7 @@ const Position: React.FC<PositionProps> = (props) => {
 
   return (
     <div className="container" onClick={handleShow}>
-      <DaysCounter applicationDate={applicationDate} daysCounter={6} />
+      <DaysCounter applicationDate={applicationDate} />
       <p>{name}</p>
       {show && (
         <Modal show={show} onHide={handleClose} size="lg">
@@ -48,9 +46,6 @@ const Position: React.FC<PositionProps> = (props) => {
             <Modal.Title>{name}</Modal.Title>
           </Modal.Header>
           <PositionInfo
-            show={show}
-            setShow={setShow}
-            handleClose={handleClose}
             companyName={name}
             applicationDate={applicationDate}
             description={description}

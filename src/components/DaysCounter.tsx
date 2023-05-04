@@ -13,11 +13,10 @@ const daysPassedSinceDate = (dateToCheck: string) => {
 
 interface DaysCounterProps {
   applicationDate: string;
-  daysCounter: number;
 }
 
 const DaysCounter: React.FC<DaysCounterProps> = (props) => {
-  const { applicationDate, daysCounter } = props;
+  const { applicationDate } = props;
 
   const daysPassedSinceApplication = daysPassedSinceDate(applicationDate);
   const statusColorTemp =
@@ -27,15 +26,15 @@ const DaysCounter: React.FC<DaysCounterProps> = (props) => {
       ? "warning"
       : "success";
 
-  const statusColor =
-    daysCounter > 20 ? "danger" : daysCounter > 5 ? "warning" : "success";
-
   return (
     <>
-    <Badge className="counter" bg={statusColorTemp} style={{marginLeft:'1rem'}}>
-      {daysPassedSinceApplication} 
-    </Badge> 
-    {/* <p style={{fontSize:'0.6rem'}}>days   since  <br/> last status update</p> */}
+      <Badge
+        className="counter"
+        bg={statusColorTemp}
+        style={{ marginLeft: "1rem" }}
+      >
+        {daysPassedSinceApplication}
+      </Badge>
     </>
   );
 };

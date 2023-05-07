@@ -9,6 +9,7 @@ import PositionDisplay from "./PositionDisplay";
 import Notes from "./Notes";
 
 interface PositionInfoProps {
+  id: string;
   companyName: string;
   applicationDate: string;
   description: string | undefined;
@@ -23,6 +24,7 @@ interface PositionInfoProps {
 
 const PositionInfo: React.FC<PositionInfoProps> = (props) => {
   const {
+    id,
     companyName,
     applicationDate,
     description,
@@ -103,13 +105,16 @@ const PositionInfo: React.FC<PositionInfoProps> = (props) => {
             )}
             {isEdit && (
               <ContactEdit
+                id={id}
                 contactName={contactName}
                 contactEmail={contactEmail}
                 contactPhoneNumber={contactPhoneNumber}
                 onCancelEdit={handleCancelEditing}
               />
             )}
-            <div className="notes">{notes && <Notes onCloseNotes={handleCloseNotes}/>}</div>
+            <div className="notes">
+              {notes && <Notes onCloseNotes={handleCloseNotes} />}
+            </div>
           </div>
         </div>
 

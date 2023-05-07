@@ -9,7 +9,11 @@ const Notes:React.FC<NotesProps> = (props) => {
     return (
         <>
            <h4>Notes</h4>
-           <div className='notesBox' ></div>
+           <div className='notesBox' >
+               {/* <label htmlFor="task">
+               <input type="checkbox" id='task' name='task' checked/>
+               </label> */}
+           </div>
            <button className="cancelBtn" onClick={onCloseNotes}>
         cancel
       </button>

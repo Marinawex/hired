@@ -1,50 +1,44 @@
-export interface IContactInfo {
-  ContactName: string;
-  ContactEmail: string;
-  ContactPhoneNumber: string; // Todo : check how to valueAsNumber works
-}
+// export interface IContactInfo {
+//   ContactName: string;
+//   ContactEmail: string;
+//   ContactPhoneNumber: string; // Todo : check how to valueAsNumber works
+// }
 
-export interface ICompany {
-  _id: string;
-  companyName: string;
-  position: string;
-  applicationDate: string;
-  status: {
-    inProcess: boolean;
-    applied: boolean;
-    followUp: boolean;
-    noReply: boolean;
-    rejected: boolean;
-  };
-  contactInfo: IContactInfo;
-  daysPassedSinceApplication:number ;
-}
+// export interface ICompany {
+//   _id: string;
+//   companyName: string;
+//   position: string;
+//   applicationDate: string;
+//   status: {
+//     inProcess: boolean;
+//     applied: boolean;
+//     followUp: boolean;
+//     noReply: boolean;
+//     rejected: boolean;
+//   };
+//   contactInfo: IContactInfo;
+//   daysPassedSinceApplication:number ;
+// }
 
-export interface ICompanies {
-  companies: ICompany[];
-}
+// export interface ICompanies {
+//   companies: ICompany[];
+// }
 
-
-export interface ICompaniesData {
-  data: ICompanies;
-  results: number;
-  status: string;
-}
+// export interface ICompaniesData {
+//   data: ICompanies;
+//   results: number;
+//   status: string;
+// }
 
 export interface Positions {
-  positions : Position[];
+  positions: Position[];
 }
-
 
 export interface positionsData {
   data: Positions;
   results: number;
   status: string;
 }
-
-
-
-
 
 export interface Company {
   name: string;
@@ -53,7 +47,12 @@ export interface Company {
   location?: string;
 }
 
-export type ApplicationStatus = 'inProcess' | 'applied' | 'followUp' | 'noReply' | 'rejected';
+export type ApplicationStatus =
+  | "inProcess"
+  | "applied"
+  | "followUp"
+  | "noReply"
+  | "rejected";
 
 export interface ContactInfo {
   name?: string;
@@ -62,6 +61,7 @@ export interface ContactInfo {
 }
 
 export interface Position {
+  _id: string;
   title: string;
   requirements?: string;
   company: Company;

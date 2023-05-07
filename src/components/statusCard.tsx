@@ -21,11 +21,16 @@ const StatusCard: React.FC<StatusCardProps> = (props) => {
     (a, b) => Date.parse(b.applicationDate) - Date.parse(a.applicationDate)
   );
 
-  const sortByDescendingOrder = () => {
-    const a = data?.data.positions.sort(
-      (a, b) => Date.parse(a.applicationDate) - Date.parse(b.applicationDate)
-    );
-  };
+  // const sortByDescendingOrder = () => {
+  //   const a = data?.data.positions.sort(
+  //     (a, b) => Date.parse(a.applicationDate) - Date.parse(b.applicationDate)
+  //   );
+  // };
+
+  // console.log(data?.data);
+  // console.log(data?.data.positions[0]._id);
+  
+  
 
   const positionsList = data?.data.positions.map((position, index) => {
     return (
@@ -33,8 +38,8 @@ const StatusCard: React.FC<StatusCardProps> = (props) => {
         {" "}
         <Position
           key={index}
+          id={position._id}
           name={position.company.name}
-          daysCounter={7}
           applicationDate={position.applicationDate}
           description={position.company.description}
           location={position.company.location}
@@ -44,6 +49,7 @@ const StatusCard: React.FC<StatusCardProps> = (props) => {
           contactName={position.contact?.name}
           contactEmail={position.contact?.email}
           contactPhoneNumber={position.contact?.phoneNumber}
+
         />
       </li>
     );
@@ -60,7 +66,7 @@ const StatusCard: React.FC<StatusCardProps> = (props) => {
                 marginRight: "2rem",
                 marginLeft: "1.2rem",
               }}
-              onClick={sortByDescendingOrder}
+              // onClick={sortByDescendingOrder}
             >
               days
               <br /> since{" "}

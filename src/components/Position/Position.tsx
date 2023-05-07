@@ -6,6 +6,7 @@ import DaysCounter from "../DaysCounter";
 import { Modal, Button } from "react-bootstrap";
 
 interface PositionProps {
+  id: string;
   name: string;
   applicationDate: string;
   description: string | undefined;
@@ -24,7 +25,8 @@ const Position: React.FC<PositionProps> = (props) => {
   const handleClose = () => setShow(false);
 
   const {
-    name, 
+    id,
+    name,
     applicationDate,
     description,
     location,
@@ -46,6 +48,7 @@ const Position: React.FC<PositionProps> = (props) => {
             <Modal.Title>{name}</Modal.Title>
           </Modal.Header>
           <PositionInfo
+            id={id}
             companyName={name}
             applicationDate={applicationDate}
             description={description}

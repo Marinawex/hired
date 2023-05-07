@@ -86,7 +86,7 @@ const PositionInfo: React.FC<PositionInfoProps> = (props) => {
             </div>
             <div className="position">
               {isEditPosition ? (
-                <PositionEdit title={title} requirements={requirements}  onCancelEdit={handleCancelEditingPosition}/>
+                <PositionEdit id={id} title={title} requirements={requirements}  onCancelEdit={handleCancelEditingPosition}/>
               ) : (
                 <PositionDisplay
                   title={title}

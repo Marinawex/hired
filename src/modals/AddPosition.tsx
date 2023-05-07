@@ -1,14 +1,10 @@
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { Button, Modal, Form, Col, Row } from "react-bootstrap";
+import { useForm , Controller} from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import './AddPosition.scss'
+import "./AddPosition.scss";
 
 const AddPositionSchema = z
   .object({
@@ -36,7 +32,7 @@ function AddPosition() {
     control,
     handleSubmit,
     reset,
-    formState: { errors , isSubmitSuccessful },
+    formState: { errors, isSubmitSuccessful },
   } = useForm<AddPositionSchema>({
     resolver: zodResolver(AddPositionSchema),
     mode: "onBlur",
@@ -81,93 +77,96 @@ function AddPosition() {
               <Button variant="success" onClick={addPosition}>
                 Add another
               </Button>
-          
-              <Button variant="success" onClick={handleClose} style={{marginLeft:'1rem'}}>
+              <Button
+                variant="success"
+                onClick={handleClose}
+                style={{ marginLeft: "1rem" }}
+              >
                 exit
               </Button>
             </>
           ) : (
             <Form onSubmit={handleSubmit(onSubmit)}>
               <div className="positionInfo">
-              <Row>
-                <Col>
-                
-                  <Form.Group className="mb-3" controlId="CompanyName">
-                    <Form.Label>Company</Form.Label>
-                    <Controller
-                      defaultValue=""
-                      control={control}
-                      name="CompanyName"
-                      render={({
-                        field: { onChange, onBlur, value, ref },
-                        fieldState: { invalid, isTouched, isDirty, error },
-                      }) => (
-                        <Form.Control
-                          onChange={onChange}
-                          onBlur={onBlur}
-                          value={value}
-                          ref={ref}
-                          placeholder="Company name"
-                        />
+                <Row>
+                  <Col>
+                    <Form.Group className="mb-3" controlId="CompanyName">
+                      <Form.Label>Company</Form.Label>
+                      <Controller
+                        defaultValue=""
+                        control={control}
+                        name="CompanyName"
+                        render={({
+                          field: { onChange, onBlur, value, ref },
+                          fieldState: { invalid, isTouched, isDirty, error },
+                        }) => (
+                          <Form.Control
+                            onChange={onChange}
+                            onBlur={onBlur}
+                            value={value}
+                            ref={ref}
+                            placeholder="Company name"
+                          />
+                        )}
+                      />
+                      {errors.CompanyName?.message && (
+                        <p style={{ color: "red" }}>
+                          {errors.CompanyName.message}
+                        </p>
                       )}
-                    />
-                    {errors.CompanyName?.message && (
-                      <p style={{ color: "red" }}>
-                        {errors.CompanyName.message}
-                      </p>
-                    )}
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group className="mb-3" controlId="Position">
-                    <Form.Label>Position</Form.Label>
-                    <Controller
-                      defaultValue=""
-                      control={control}
-                      name="Position"
-                      render={({ field: { onChange, onBlur, value, ref } }) => (
-                        <Form.Control
-                          type="text"
-                          onChange={onChange}
-                          value={value}
-                          ref={ref}
-                          placeholder="Position"
-                          name="Position"
-                        />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3" controlId="Position">
+                      <Form.Label>Position</Form.Label>
+                      <Controller
+                        defaultValue=""
+                        control={control}
+                        name="Position"
+                        render={({
+                          field: { onChange, onBlur, value, ref },
+                        }) => (
+                          <Form.Control
+                            type="text"
+                            onChange={onChange}
+                            value={value}
+                            ref={ref}
+                            placeholder="Position"
+                            name="Position"
+                          />
+                        )}
+                      />
+                      {errors.Position && (
+                        <p style={{ color: "red" }}>
+                          {errors.Position.message}
+                        </p>
                       )}
-                    />
-                    {errors.Position && (
-                      <p style={{ color: "red" }}>{errors.Position.message}</p>
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Form.Group className="mb-3" controlId="ApplicationDate">
+                  <Form.Label>Application date</Form.Label>
+                  <Controller
+                    defaultValue={new Date().toISOString().substr(0, 10)}
+                    control={control}
+                    name="ApplicationDate"
+                    render={({ field: { onChange, onBlur, value, ref } }) => (
+                      <Form.Control
+                        type="date"
+                        name="date"
+                        onChange={onChange}
+                        value={value}
+                        ref={ref}
+                      />
                     )}
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Form.Group className="mb-3" controlId="ApplicationDate">
-                <Form.Label>Application date</Form.Label>
-                <Controller
-                  defaultValue={new Date().toISOString().substr(0, 10)}
-                  control={control}
-                  name="ApplicationDate"
-                  render={({ field: { onChange, onBlur, value, ref } }) => (
-                    <Form.Control
-                      type="date"
-                      name="date"
-                      onChange={onChange}
-                      value={value}
-                      ref={ref}
-                    />
+                  />
+                  {errors.ApplicationDate && (
+                    <p>{errors.ApplicationDate.message}</p>
                   )}
-                />
-                {errors.ApplicationDate && (
-                  <p>{errors.ApplicationDate.message}</p>
-                )}
-              
-              </Form.Group>
+                </Form.Group>
               </div>
               <h3>Contact Info</h3>
-              <div className="ContactInfo"
-               
-              >
+              <div className="ContactInfo">
                 <Row>
                   <Col>
                     <Form.Group className="mb-3" controlId="Contact Name">

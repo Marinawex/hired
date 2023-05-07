@@ -1,8 +1,7 @@
 import { svg } from "../assets/Svg";
 import "./ContactEdit.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useState } from "react";
-import { isValid, z } from "zod";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 
@@ -30,8 +29,6 @@ const ContactEdit: React.FC<ContactEditProps> = (props) => {
   const {
     register,
     handleSubmit,
-    watch,
-    reset,
     formState: { errors, isSubmitSuccessful },
   } = useForm<ContactEditForm>();
 
@@ -111,7 +108,7 @@ const ContactEdit: React.FC<ContactEditProps> = (props) => {
        
       </form>
       <br />
-      {isSubmitSuccessful && <span style={{ color: "green" }}>The changes were saved</span>}
+      {isSubmitSuccessful && <span style={{ color: "green" }}>The changes have been successfully saved</span>}
     </>
   );
 };

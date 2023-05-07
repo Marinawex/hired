@@ -7,6 +7,8 @@ import ContactEdit from "./ContactEdit";
 import { svg } from "../assets/Svg";
 import PositionDisplay from "./PositionDisplay";
 import Notes from "./Notes";
+import Tips from "./Tips";
+import PositionEdit from "./PositionEdit";
 
 interface PositionInfoProps {
   id: string;
@@ -36,9 +38,17 @@ const PositionInfo: React.FC<PositionInfoProps> = (props) => {
     contactEmail,
     contactPhoneNumber,
   } = props;
-  const [isEdit, setIsEdit] = useState(false);
-  const handleStartEditing = () => setIsEdit(true);
-  const handleCancelEditing = () => setIsEdit(false);
+  const [isEditContact, setIsEditContact] = useState(false);
+  const handleStartEditingContact = () => setIsEditContact(true);
+  const handleCancelEditingContact = () => setIsEditContact(false);
+
+  const [isEditCompany, setIsEditCompany] = useState(false);
+  const handleStartEditingCompany = () => setIsEditCompany(true);
+  const handleCancelEditingCompany = () => setIsEditCompany(false);
+
+  const [isEditPosition, setIsEditPosition] = useState(false);
+  const handleStartEditingPosition = () => setIsEditPosition(true);
+  const handleCancelEditingPosition = () => setIsEditPosition(false);
 
   const [notes, setNotes] = useState(false);
   const handleOpenNotes = () => setNotes(true);
@@ -75,41 +85,40 @@ const PositionInfo: React.FC<PositionInfoProps> = (props) => {
               </div>
             </div>
             <div className="position">
-              <PositionDisplay
-                title={title}
-                requirements={requirements}
-                onEdit={handleStartEditing}
-              />
+              {isEditPosition ? (
+                <PositionEdit title={title} requirements={requirements}  onCancelEdit={handleCancelEditingPosition}/>
+              ) : (
+                <PositionDisplay
+                  title={title}
+                  requirements={requirements}
+                  onEdit={handleStartEditingPosition}
+                />
+              )}
             </div>
             <div className="tips">
-              <h4>Tips</h4>
-              <ul>
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>consectetur adipisicing elit.</li>
-                <li>Corporis eius, dolor.</li>
-              </ul>
+              <Tips />
             </div>
           </div>
           <div className="contactInfo">
-            {contactName ? (
-              !isEdit && (
-                <ContactDisplay
-                  contactName={contactName}
-                  contactEmail={contactEmail}
-                  contactPhoneNumber={contactPhoneNumber}
-                  onEdit={handleStartEditing}
-                />
-              )
-            ) : (
-              <p style={{ margin: "0 auto" }}>no contact info</p>
-            )}
-            {isEdit && (
+            {contactName
+              ? !isEditContact && (
+                  <ContactDisplay
+                    contactName={contactName}
+                    contactEmail={contactEmail}
+                    contactPhoneNumber={contactPhoneNumber}
+                    onEdit={handleStartEditingContact}
+                  />
+                )
+              : !isEditContact && (
+                  <p style={{ margin: "0 auto" }}>no contact info</p>
+                )}
+            {isEditContact && (
               <ContactEdit
                 id={id}
                 contactName={contactName}
                 contactEmail={contactEmail}
                 contactPhoneNumber={contactPhoneNumber}
-                onCancelEdit={handleCancelEditing}
+                onCancelEdit={handleCancelEditingContact}
               />
             )}
             <div className="notes">
@@ -124,7 +133,10 @@ const PositionInfo: React.FC<PositionInfoProps> = (props) => {
             Add notes
           </Button>{" "}
           {noContact && (
-            <Button variant="outline-secondary" onClick={handleStartEditing}>
+            <Button
+              variant="outline-secondary"
+              onClick={handleStartEditingContact}
+            >
               Add contact
             </Button>
           )}

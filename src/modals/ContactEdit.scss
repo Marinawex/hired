@@ -1,5 +1,12 @@
+textarea{
+  border: transparent;
+  background-color: transparent;
+
+}
+
 input{
   border: transparent;
+  background-color: transparent;
 
   &:focus{
     border: 1px solid gray;

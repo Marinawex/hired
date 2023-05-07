@@ -30,14 +30,13 @@ function AddPosition() {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  const [isFormSubmited, setIsFormSubmited] = useState(false);
   const [formSubmitionError, setFormSubmitionError] = useState(false);
 
   const {
     control,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors , isSubmitSuccessful },
   } = useForm<AddPositionSchema>({
     resolver: zodResolver(AddPositionSchema),
     mode: "onBlur",
@@ -58,7 +57,6 @@ function AddPosition() {
       })
       .then(function (response) {
         console.log(response);
-        setIsFormSubmited(true);
       })
       .catch(function (error) {
         console.log(error);
@@ -67,7 +65,6 @@ function AddPosition() {
   };
 
   const addPosition = () => {
-    setIsFormSubmited(false);
     reset();
   };
 
@@ -78,11 +75,15 @@ function AddPosition() {
           <Modal.Title>Add Position</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {isFormSubmited ? (
+          {isSubmitSuccessful ? (
             <>
               <p>position was sucsessfully added</p>{" "}
               <Button variant="success" onClick={addPosition}>
                 Add another
+              </Button>
+          
+              <Button variant="success" onClick={handleClose} style={{marginLeft:'1rem'}}>
+                exit
               </Button>
             </>
           ) : (
